@@ -1,0 +1,32 @@
+[gd_scene load_steps=2 format=3 uid="uid://daqw32so5e6aw"]
+
+[ext_resource type="Script" uid="uid://dqr2oxksaamuh" path="res://scripts/start_game_button.gd" id="1_fgkus"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_fgkus")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 87.0
+offset_top = 14.0
+offset_right = 1102.0
+offset_bottom = 560.0
+theme_override_font_sizes/font_size = 350
+text = "TITLE"
+
+[node name="start" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 474.0
+offset_top = 505.0
+offset_right = 614.0
+offset_bottom = 555.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start game"
+
+[connection signal="pressed" from="start" to="." method="_on_start_button_pressed"]
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
