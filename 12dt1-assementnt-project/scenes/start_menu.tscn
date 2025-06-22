@@ -1,0 +1,66 @@
+[gd_scene load_steps=2 format=3 uid="uid://ca64nsafkhw2"]
+
+[ext_resource type="Script" uid="uid://j5v44nnif683" path="res://scripts/start_menu.gd" id="1_ouf4f"]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_ouf4f")
+
+[node name="button controller" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Continue" type="Button" parent="button controller"]
+layout_mode = 0
+offset_left = 241.0
+offset_top = 474.0
+offset_right = 419.0
+offset_bottom = 531.0
+text = "Continue "
+
+[node name="New game" type="Button" parent="button controller"]
+layout_mode = 0
+offset_left = 475.0
+offset_top = 472.0
+offset_right = 652.0
+offset_bottom = 530.0
+text = "New Game"
+
+[node name="Options" type="Button" parent="button controller"]
+layout_mode = 0
+offset_left = 1029.0
+offset_top = 418.0
+offset_right = 1123.0
+offset_bottom = 470.0
+text = "Options"
+
+[node name="Credits" type="Button" parent="button controller"]
+layout_mode = 0
+offset_left = 21.0
+offset_top = 405.0
+offset_right = 117.0
+offset_bottom = 464.0
+text = "Credits"
+
+[node name="quit" type="Button" parent="button controller"]
+layout_mode = 0
+offset_left = 709.0
+offset_top = 473.0
+offset_right = 890.0
+offset_bottom = 532.0
+text = "Quit"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 108.0
+offset_top = 7.0
+offset_right = 1123.0
+offset_bottom = 553.0
+theme_override_font_sizes/font_size = 350
+text = "TITLE"
+
+[connection signal="pressed" from="button controller/Continue" to="." method="_on_continue_pressed"]
+[connection signal="pressed" from="button controller/New game" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="button controller/Options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="button controller/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="button controller/quit" to="." method="_on_quit_pressed"]
