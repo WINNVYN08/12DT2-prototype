@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://bd4nbyoylde07"]
+
+[ext_resource type="Script" uid="uid://u7e8anwx4k42" path="res://scenes/character.gd" id="1_agfs1"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_agfs1"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+floor_max_angle = 0.84823
+floor_snap_length = 7.5
+script = ExtResource("1_agfs1")
+jump_speed = -917
+friction = 0.89
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
+shape = SubResource("CapsuleShape2D_agfs1")
+
+[node name="ColorRect" type="ColorRect" parent="CharacterBody2D/CollisionShape2D"]
+offset_left = -10.0
+offset_top = -15.0
+offset_right = 10.0
+offset_bottom = 15.0
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D/CollisionShape2D/ColorRect"]
+position_smoothing_speed = 2.0
+drag_left_margin = 0.09
+drag_top_margin = 0.11
+drag_right_margin = 0.09
+drag_bottom_margin = 0.16
