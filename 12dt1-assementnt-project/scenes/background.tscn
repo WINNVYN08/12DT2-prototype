@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://0r2dgumt375b"]
+
+[ext_resource type="Texture2D" uid="uid://dwjgjx547k0gb" path="res://assets/Legacy-Fantasy - High Forest 2.3/Background/Background.png" id="1_bkp1e"]
+
+[node name="Background" type="Sprite2D"]
+position = Vector2(243, 143)
+texture = ExtResource("1_bkp1e")
+
+[node name="Background4" type="Sprite2D" parent="."]
+position = Vector2(1957, -482)
+scale = Vector2(1, 0.87699)
+texture = ExtResource("1_bkp1e")
+
+[node name="Background2" type="Sprite2D" parent="Background4"]
+position = Vector2(480, 0)
+texture = ExtResource("1_bkp1e")
+
+[node name="Background" type="Sprite2D" parent="Background4/Background2"]
+position = Vector2(480, 0)
+texture = ExtResource("1_bkp1e")
+
+[node name="Background3" type="Sprite2D" parent="."]
+position = Vector2(1477, -482)
+scale = Vector2(1, 0.87699)
+texture = ExtResource("1_bkp1e")
+
+[node name="Background" type="Sprite2D" parent="."]
+position = Vector2(480, 0)
+texture = ExtResource("1_bkp1e")
+
+[node name="Background2" type="Sprite2D" parent="."]
+position = Vector2(960, 0)
+texture = ExtResource("1_bkp1e")
+
+[node name="Background" type="Sprite2D" parent="Background2"]
+position = Vector2(480, 0)
+texture = ExtResource("1_bkp1e")
+
+[node name="Node" type="Node" parent="."]
