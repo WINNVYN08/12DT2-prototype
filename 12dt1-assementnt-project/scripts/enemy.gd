@@ -17,6 +17,9 @@ var gravity = 900
 var knockback = 200
 var is_roaming = true
 
+var player: CharacterBody2D
+var player_in_sight = false
+
 
 
 func _process(delta):
@@ -37,6 +40,10 @@ func move(delta):
 	if !dead:
 		if ! chasing:
 			velocity += dir * speed * delta
+		elif chasing and ! damaged:
+			var player_dir = position.direction_to(player.position) * speed
+			velocity.x = player_dir.x
+			
 		is_roaming = true
 	elif dead:
 		velocity.x = 0
@@ -48,5 +55,5 @@ func pick(array):
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
 	if body.has_meta("player_attack"):
-		hide()
+		speed = 0
 	pass # Replace with function body.
