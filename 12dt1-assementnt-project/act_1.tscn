@@ -11147,7 +11147,7 @@ repeat_size = Vector2(320, 0)
 repeat_times = 3
 
 [node name="Near-trees" type="Sprite2D" parent="trees"]
-position = Vector2(29, 53)
+position = Vector2(29, 68)
 texture = ExtResource("5_hc225")
 
 [node name="mist" type="Parallax2D" parent="."]
@@ -11170,7 +11170,7 @@ position = Vector2(37, 83)
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_hi3qe")
-offset_left = -555.0
-offset_top = -299.0
-offset_right = 1831.0
-offset_bottom = 874.0
+offset_left = -508.0
+offset_top = -257.0
+offset_right = 1878.0
+offset_bottom = 916.0
