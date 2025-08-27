@@ -1,7 +1,7 @@
 extends CharacterBody2D
 @onready var sword_collision = $Sword_area/sword_collision
 @export var double_jump_speed = -200
-@export var speed = 120
+@export var speed = 200
 @export var dash_speed = 200
 @export var jump_speed = -200
 @export var gravity = 700
