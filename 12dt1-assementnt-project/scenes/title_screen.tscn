@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://daqw32so5e6aw"]
+[gd_scene load_steps=15 format=3 uid="uid://daqw32so5e6aw"]
 
 [ext_resource type="Script" uid="uid://dqr2oxksaamuh" path="res://scripts/start_game_button.gd" id="1_fgkus"]
 [ext_resource type="Shader" uid="uid://cykk6c2gajhks" path="res://scripts/title_screen.gdshader" id="2_sa3yf"]
-[ext_resource type="Texture2D" uid="uid://bolnfd8n7h8wh" path="res://assets/Legacy-Fantasy - High Forest 2.3/Character/Sprite-001.png" id="3_s4lrb"]
-[ext_resource type="Texture2D" uid="uid://d0uq5cusagke3" path="res://assets/Legacy-Fantasy - High Forest 2.3/Character/Sprite-01.png" id="4_mgrm8"]
+[ext_resource type="Texture2D" uid="uid://c881f2hqkjiuy" path="res://assets/cat_run-Sheet.png" id="3_mgrm8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_s4lrb"]
 shader = ExtResource("2_sa3yf")
@@ -18,36 +17,106 @@ shader_parameter/scrolling_speed = 0.08
 shader_parameter/enable_palette_cycling = false
 shader_parameter/palette_speed = 0.1
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_s4lrb"]
+load_path = "res://.godot/imported/Sprite-01.png-5b4f60d421f225eaa77f135b3dfbf0b4.ctex"
+
+[sub_resource type="Curve2D" id="Curve2D_s4lrb"]
+bake_interval = 5.05
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -26, 226, 0, 0, 0, 0, 559, 228, 0, 0, 0, 0, 559, 134, 0, 0, 0, 0, 543, 13, 0, 0, 0, 0, 536, -49, 0, 0, 0, 0, 225, -61, 0, 0, 0, 0, -57, -41, 0, 0, 0, 0, -114, 217)
+}
+point_count = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc4i4"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e54dn"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yumr"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs5ya"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mykxm"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tklts"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u26n3"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ib7db"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc4i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e54dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yumr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs5ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mykxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tklts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u26n3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 13.0
+}]
+
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_fgkus")
 
-[node name="Camera2D" type="Camera2D" parent="."]
-visible = false
-position = Vector2(525, 311)
-scale = Vector2(50, 50)
-zoom = Vector2(2, 2)
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -300.0
+offset_top = -106.0
+offset_right = 1062.0
+offset_bottom = 483.0
 
-[node name="Sprite-001" type="Sprite2D" parent="."]
-visible = false
-position = Vector2(459.5, 464.5)
-scale = Vector2(1.215, 1.003)
-texture = ExtResource("3_s4lrb")
+[node name="ColorRect" type="ColorRect" parent="ColorRect"]
+layout_mode = 0
+offset_left = 28.0
+offset_top = 404.0
+offset_right = 1390.0
+offset_bottom = 993.0
+color = Color(0.631982, 0.721827, 0.756874, 1)
 
 [node name="TextureRect" type="TextureRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_s4lrb")
 offset_left = -300.0
 offset_top = -7.00001
 offset_right = 1662.0
 offset_bottom = 993.0
 scale = Vector2(0.816162, 0.803003)
-texture = ExtResource("4_mgrm8")
+texture = SubResource("CompressedTexture2D_s4lrb")
 stretch_mode = 1
 
 [node name="Label" type="Label" parent="."]
-offset_left = 18.0
-offset_top = 7.0
-offset_right = 1033.0
-offset_bottom = 553.0
+offset_left = 894.0
+offset_top = -344.0
+offset_right = 1909.0
+offset_bottom = 202.0
 scale = Vector2(0.943213, 0.942948)
 theme_override_font_sizes/font_size = 350
 text = "TITLE"
@@ -57,15 +126,43 @@ anchors_preset = -1
 anchor_left = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 474.0
-offset_top = 505.0
-offset_right = 614.0
-offset_bottom = 555.0
+offset_left = 173.0
+offset_top = 154.0
+offset_right = 313.0
+offset_bottom = 204.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 text = "Start game"
 
-[connection signal="pressed" from="start" to="." method="_on_start_button_pressed"]
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_s4lrb")
+
+[node name="PathFollow1" type="PathFollow2D" parent="Path2D"]
+position = Vector2(521.133, -49.5736)
+rotation = -3.10303
+progress = 878.37
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow1"]
+position = Vector2(-5.05466, -10.975)
+rotation = -0.00497508
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ib7db")
+autoplay = "default"
+frame_progress = 0.702614
+
+[node name="PathFollow2" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-26, 226)
+rotation = 0.00341879
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Path2D/PathFollow2"]
+position = Vector2(2.00683, 1.99316)
+rotation = -0.00497508
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ib7db")
+autoplay = "default"
+frame_progress = 0.910491
+
 [connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="start" to="." method="_on_start_button_pressed"]
