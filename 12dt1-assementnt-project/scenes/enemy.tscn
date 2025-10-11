@@ -6,11 +6,13 @@
 radius = 5.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_7p1mj"]
-radius = 5.0
+radius = 6.0
 
 [node name="enemy1" type="CharacterBody2D"]
+collision_layer = 2
+collision_mask = 2
 script = ExtResource("1_7p1mj")
-metadata/enemy = false
+metadata/enemy = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8tegq")
@@ -20,6 +22,8 @@ debug_color = Color(0.917822, 0.275562, 0.192968, 0.42)
 autostart = true
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_7p1mj")

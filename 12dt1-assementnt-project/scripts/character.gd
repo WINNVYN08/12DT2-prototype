@@ -1,20 +1,20 @@
 extends CharacterBody2D
 @onready var sword_collision = $Sword_area/sword_collision
-@export var double_jump_speed = -200
-@export var speed = 200
-@export var dash_speed = 200
-@export var jump_speed = -200
-@export var gravity = 700
+@export var double_jump_speed = -150
+@export var speed = 100
+@export var dash_speed = 400
+@export var jump_speed = -250
+@export var gravity = 1200
 @onready var _animated_sprite = $AnimatedSprite2D
 @export var stomp_speed = 400
 var initial_gravity = 700
-@export_range(0.0, 1.0) var walk_friction = 0.3
-@export_range(0.0 , 1.0) var walk_acceleration = 0.1
+@export_range(0.0, 1.0) var walk_friction = 0.2
+@export_range(0.0 , 1.0) var walk_acceleration = 0.3
 var acceleration = 0
 var friction = 0
 var slide_direction = 0
 var sliding = false
-@export_range(0.0 , 1.0) var slide_friction = 0.01
+@export_range(0.0 , 1.0) var slide_friction = 0.009
 
 @export var wall_jump_pushback = 200
 @export var wall_jump_speed = -190
@@ -29,11 +29,17 @@ var dash_ready = false
 var double_jump_ready = false
 var start_position = Vector2.ZERO
 var is_attacking = false
+var jumping = false
+
+var coyote_frames = 60
+var coyote = false
+var last_floor = false  
 
 
 func _ready():
 	sword_collision.disabled = true
 	Global.playerBody
+	$CoyoteTimer.wait_time = coyote_frames / 60.0
 	
 	pass
 
@@ -89,14 +95,16 @@ func _physics_process(delta):
 		
 		
 	if is_on_floor():
+		jumping = false
 		dash_ready = false
 		double_jump_ready = false
 		variable_jump = true
 		wall_jump = true
 
-	if Input.is_action_just_pressed("jump") and is_on_floor ():
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote):
 		velocity.y = jump_speed
 		_animated_sprite.play("jump")
+		jumping = true
 		dash_ready = true
 		double_jump_ready = true
 
@@ -112,8 +120,8 @@ func _physics_process(delta):
 
 	if Input.is_action_just_pressed("dash") and dash_ready:
 		dash_ready = false
-		velocity.x = dir * (dash_speed * 1.5)
-		velocity.y = -velocity.y /4
+		velocity.x = dir * (dash_speed * 2)
+		velocity.y = -velocity.y /2
 		
 	if Input.is_action_just_pressed("jump") and is_on_wall() and wall_jump and ! is_on_floor():
 			velocity.y = wall_jump_speed
@@ -125,17 +133,23 @@ func _physics_process(delta):
 		gravity = wall_fall_speed
 	else:
 		gravity = initial_gravity
+		
+	if !is_on_floor() and last_floor and !jumping:
+		coyote = true
+		$CoyoteTimer.start()
+		
 	if Input.is_action_just_pressed("attack") and not is_attacking:
 		start_attack()
 		
 
 			
 		
-		
+	last_floor = is_on_floor()
 	print(health)
 	player_health()
 	apply_floor_snap() 
 	move_and_slide()
+	
 	
 func start_attack():
 	if can_attack_again or is_attacking:
@@ -143,7 +157,6 @@ func start_attack():
 		is_attacking = true
 		sword_collision.disabled = false
 		can_attack_again = false
-		_animated_sprite.play("attack")
 		attack_timer()
 
 func player_health():
@@ -151,15 +164,21 @@ func player_health():
 		speed = 0 
 	
 func attack_timer() -> void:
+
 	await get_tree().create_timer(0.4).timeout
 	is_attacking = false
 	sword_collision.disabled = true	
 	await get_tree().create_timer(0.4).timeout
 	can_attack_again = true  # Re-enable attacking
+	_animated_sprite.play("attack")
+
+
+func _on_area_2d_body_entered(body: Node) -> void:
+	if body.has_meta("enemy"):
+		health -= 1000
+	pass # Replace with function body.
 	
 
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	if body.has_meta("enemy"):
-		health -= 20
+func _on_coyote_timer_timeout() -> void:
+	coyote = false
 	pass # Replace with function body.

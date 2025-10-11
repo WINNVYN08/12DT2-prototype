@@ -1,13 +1,13 @@
 shader_type canvas_item;
 
-
-uniform float amplitude = 200;
-uniform float frequency = 1.0;
+uniform float screen_height = 99999;
+uniform float amplitude = 0.075;
+uniform float frequency = 10.0;
 uniform float speed = 2.0;
-uniform float amplitude_vertical = 200.0;
-uniform float frequency_vertical = 200.0;
-uniform float speed_vertical = 2.0;
-uniform vec2 scroll_direction = vec2(20.0, 20.0);
+uniform float amplitude_vertical = 0.0;
+uniform float frequency_vertical = 0.0;
+uniform float speed_vertical = 0.0;
+uniform vec2 scroll_direction = vec2(0.0, 0.0);
 uniform float scrolling_speed = 0.08;
 uniform bool enable_palette_cycling = false;
 uniform sampler2D palette;
@@ -20,7 +20,11 @@ void fragment()
 	vec2 scroll = scroll_direction * TIME * scrolling_speed;
 	vec4 tex = texture(TEXTURE, vec2(UV.x + diff_x, UV.y + diff_y) + scroll);
 	float palette_swap = mod(tex.r - TIME * palette_speed, 1.0);
-
-	COLOR = tex;
-
+	
+	if (enable_palette_cycling)
+	{
+		COLOR = vec4(texture(palette, vec2(palette_swap, 0)).rgb, tex.a);
+	}
+	else COLOR = tex;
+	COLOR = mix(vec4(0.0), COLOR, float(int(UV.y * screen_height) % 4));
 }
