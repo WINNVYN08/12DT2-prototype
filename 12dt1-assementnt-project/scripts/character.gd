@@ -168,11 +168,8 @@ func player_health():
 	if health <= 0 :
 		speed = 0 
 		jump_speed = 0
-		_animated_sprite.play("death")		
-		Engine.time_scale = 0.5
-		$"../ColorRect2".show()
+		_animated_sprite.play("death")	
 		$DeathSound.play()
-		await get_tree().create_timer(1).timeout
 		get_tree().change_scene_to_file("res://scenes/Game_over_screen.tscn")
 		
 	

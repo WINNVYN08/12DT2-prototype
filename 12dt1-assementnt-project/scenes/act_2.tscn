@@ -8,7 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bd4nbyoylde07" path="res://scenes/character.tscn" id="3_mihwk"]
 [ext_resource type="Script" uid="uid://c4e7rgripcwb3" path="res://scripts/lv2_door_a.gd" id="4_ijqgd"]
 [ext_resource type="Script" uid="uid://dcpxoho3q4tts" path="res://scripts/lv2_door_b.gd" id="5_37aou"]
-[ext_resource type="AudioStream" uid="uid://dnaejh7civyqm" path="res://assets/act_2_song.mp3" id="6_37aou"]
+[ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="9_175kj"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vx6q7"]
 shader = ExtResource("1_175kj")
@@ -17439,12 +17439,17 @@ script = ExtResource("5_37aou")
 position = Vector2(479, 226)
 shape = SubResource("RectangleShape2D_831nj")
 
-[node name="Act2Song" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-8, 120)
-stream = ExtResource("6_37aou")
-pitch_scale = 1.42
-autoplay = true
-parameters/looping = true
+[node name="enemy1" parent="." instance=ExtResource("9_175kj")]
+position = Vector2(87, 226)
+wall_min_slide_angle = 0.462512
+
+[node name="enemy2" parent="." instance=ExtResource("9_175kj")]
+position = Vector2(250, 163)
+wall_min_slide_angle = 0.462512
+
+[node name="enemy3" parent="." instance=ExtResource("9_175kj")]
+position = Vector2(281, 69)
+wall_min_slide_angle = 0.462512
 
 [connection signal="area_entered" from="door_a/Area2D" to="door_a" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="door_b/Area2D" to="door_b" method="_on_area_2d_area_entered"]

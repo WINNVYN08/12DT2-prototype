@@ -181,7 +181,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"death",
-"speed": 3.0
+"speed": 2.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -301,7 +301,7 @@ script = ExtResource("1_agfs1")
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_cicko")
 animation = &"death"
-autoplay = "attack"
+autoplay = "idle"
 frame = 2
 frame_progress = 1.0
 speed_scale = 1.04
@@ -369,6 +369,7 @@ one_shot = true
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
 position = Vector2(-183, 215)
 stream = ExtResource("11_8yvht")
+pitch_scale = 2.83
 
 [node name="ColorRect2" type="ColorRect" parent="."]
 visible = false
