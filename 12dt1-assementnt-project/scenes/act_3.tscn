@@ -17389,7 +17389,7 @@ tile_map_data = PackedByteArray("AAALABAAAAAJACcAAAAUABAAAAAKACgAAAAcAA8AAAAxADA
 tile_set = SubResource("TileSet_4ljq8")
 
 [node name="Node2D" parent="." instance=ExtResource("3_vmtld")]
-position = Vector2(11, 69)
+position = Vector2(14, 71)
 
 [node name="door_a" type="Node" parent="."]
 script = ExtResource("4_5r2iv")

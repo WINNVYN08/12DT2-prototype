@@ -21,7 +21,7 @@ var sliding = false
 @export var wall_fall_speed = 50
 
 
-var health = 200
+var health = 100
 var can_attack_again = true
 var wall_jump = true 
 var variable_jump = true
@@ -37,8 +37,10 @@ var last_floor = false
 
 
 func _ready():
+	# whether or not the attackcollison i hidden
 	sword_collision.disabled = true
 	Global.playerBody
+	#setting the cayote time
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
 	
 	pass
@@ -46,9 +48,11 @@ func _ready():
 
 func _physics_process(delta):
 	velocity.y += gravity * delta
-
+	
+	# defining dir
 	var dir = Input.get_axis("left", "right")
 	
+	# this code is for the slide
 	if  not Input.is_action_pressed("down")  :
 		sliding = false
 		if dir != 0:
@@ -59,6 +63,7 @@ func _physics_process(delta):
 		else:
 			velocity.x = lerp(velocity.x,0.0 , friction)
 	
+	#flipping the chacter sprite
 	if dir <0 :
 		_animated_sprite.flip_h = true
 		sword_collision.position.x = -7
@@ -93,7 +98,7 @@ func _physics_process(delta):
 	if velocity.x == 0 and is_on_floor():
 		_animated_sprite.play("idle")		
 		
-		
+	# setting all the states that are needed when player touches floor
 	if is_on_floor():
 		jumping = false
 		dash_ready = false
@@ -175,7 +180,7 @@ func attack_timer() -> void:
 
 func _on_area_2d_body_entered(body: Node) -> void:
 	if body.has_meta("enemy"):
-		health -= 1000
+		health -= 20
 	pass # Replace with function body.
 	
 

@@ -3,8 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://cc1j2r0aw8yo8" path="res://assets/nestle.png" id="1_1j55b"]
 [ext_resource type="Texture2D" uid="uid://d1y576wr21l0f" path="res://assets/oak_woods_tileset.png" id="2_v0cv1"]
 [ext_resource type="PackedScene" uid="uid://bd4nbyoylde07" path="res://scenes/character.tscn" id="3_8ug6x"]
-[ext_resource type="Script" uid="uid://cgukawa0hqyqg" path="res://scenes/lv4_door_a.gd" id="4_8ug6x"]
-[ext_resource type="Script" uid="uid://bsns8jl11sorw" path="res://scenes/lv4_door_b.gd" id="5_whdhu"]
+[ext_resource type="Script" uid="uid://cgukawa0hqyqg" path="res://scripts/lv4_door_a.gd" id="4_8ug6x"]
+[ext_resource type="Script" uid="uid://bsns8jl11sorw" path="res://scripts/lv4_door_b.gd" id="5_whdhu"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_fqukr"]
 texture = ExtResource("1_1j55b")
@@ -22912,7 +22912,7 @@ sources/0 = SubResource("TileSetAtlasSource_8ug6x")
 sources/1 = SubResource("TileSetAtlasSource_whdhu")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_02rni"]
-size = Vector2(21, 54)
+size = Vector2(46.5, 54)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_lbcjn"]
 size = Vector2(180, 20)
@@ -22943,17 +22943,20 @@ script = ExtResource("4_8ug6x")
 [node name="Area2D" type="Area2D" parent="door_a"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="door_a/Area2D"]
-position = Vector2(-10.5, 46)
+position = Vector2(-10, 47)
 shape = SubResource("RectangleShape2D_02rni")
 
 [node name="door_b" type="Node" parent="."]
 script = ExtResource("5_whdhu")
 
 [node name="Area2D" type="Area2D" parent="door_b"]
+collision_layer = 7
+collision_mask = 7
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="door_b/Area2D"]
-position = Vector2(370, 267)
+position = Vector2(372, 264)
 shape = SubResource("RectangleShape2D_lbcjn")
+one_way_collision_margin = 2.7
 
 [connection signal="area_entered" from="door_a/Area2D" to="door_a" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="door_b/Area2D" to="door_b" method="_on_area_2d_area_entered"]

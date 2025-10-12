@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://bd4nbyoylde07"]
+[gd_scene load_steps=41 format=3 uid="uid://bd4nbyoylde07"]
 
 [ext_resource type="Script" uid="uid://u7e8anwx4k42" path="res://scripts/character.gd" id="1_agfs1"]
 [ext_resource type="Texture2D" uid="uid://bh0qpyf8pw3jr" path="res://assets/cat_jump.png" id="2_dp8ca"]
@@ -6,6 +6,8 @@
 [ext_resource type="Texture2D" uid="uid://di8bqpgj1ocfb" path="res://assets/icon.svg" id="2_rkhd4"]
 [ext_resource type="Texture2D" uid="uid://c881f2hqkjiuy" path="res://assets/cat_run-Sheet.png" id="3_dp8ca"]
 [ext_resource type="Texture2D" uid="uid://c8vlb4in2yctn" path="res://assets/cat_attack-Sheet.png" id="4_0lw5n"]
+[ext_resource type="Texture2D" uid="uid://cmcfymfem1nyu" path="res://assets/greenbar (3).png" id="7_a5ia6"]
+[ext_resource type="Texture2D" uid="uid://dsfksupg0kya8" path="res://assets/greenbar (2).png" id="8_0dpix"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41u22"]
 atlas = ExtResource("4_0lw5n")
@@ -303,7 +305,23 @@ limit_left = 0
 limit_top = 0
 limit_right = 454
 limit_bottom = 272
-limit_smoothed = true
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="CanvasLayer" type="CanvasLayer" parent="CharacterBody2D/Camera2D"]
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CharacterBody2D/Camera2D/CanvasLayer"]
+offset_left = -4.0
+offset_top = -20.0
+offset_right = 152.0
+offset_bottom = 134.0
+scale = Vector2(1.03883, 0.853)
+size_flags_horizontal = 0
+value = 20.0
+texture_under = ExtResource("7_a5ia6")
+texture_progress = ExtResource("8_0dpix")
+texture_progress_offset = Vector2(0, 15)
 
 [node name="CoyoteTimer" type="Timer" parent="CharacterBody2D"]
 wait_time = 0.236
