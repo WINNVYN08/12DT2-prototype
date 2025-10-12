@@ -1,13 +1,18 @@
-[gd_scene load_steps=41 format=3 uid="uid://bd4nbyoylde07"]
+[gd_scene load_steps=50 format=3 uid="uid://bd4nbyoylde07"]
 
 [ext_resource type="Script" uid="uid://u7e8anwx4k42" path="res://scripts/character.gd" id="1_agfs1"]
 [ext_resource type="Texture2D" uid="uid://bh0qpyf8pw3jr" path="res://assets/cat_jump.png" id="2_dp8ca"]
 [ext_resource type="Texture2D" uid="uid://x5pvtaocvkpv" path="res://assets/cat_idle-Sheet.png" id="2_my7n2"]
 [ext_resource type="Texture2D" uid="uid://di8bqpgj1ocfb" path="res://assets/icon.svg" id="2_rkhd4"]
+[ext_resource type="Texture2D" uid="uid://dwy70vewgcrk6" path="res://assets/cat_death-Sheet.png" id="3_50cep"]
 [ext_resource type="Texture2D" uid="uid://c881f2hqkjiuy" path="res://assets/cat_run-Sheet.png" id="3_dp8ca"]
 [ext_resource type="Texture2D" uid="uid://c8vlb4in2yctn" path="res://assets/cat_attack-Sheet.png" id="4_0lw5n"]
 [ext_resource type="Texture2D" uid="uid://cmcfymfem1nyu" path="res://assets/greenbar (3).png" id="7_a5ia6"]
 [ext_resource type="Texture2D" uid="uid://dsfksupg0kya8" path="res://assets/greenbar (2).png" id="8_0dpix"]
+[ext_resource type="Script" uid="uid://bfk0mj121rgoj" path="res://scenes/health_bar.gd" id="9_0dpix"]
+[ext_resource type="Shader" uid="uid://c82n4yffa5is6" path="res://scripts/pallete.gdshader" id="10_irmqu"]
+[ext_resource type="AudioStream" uid="uid://bidceygi4yw1f" path="res://assets/death_sound.wav" id="11_8yvht"]
+[ext_resource type="Texture2D" uid="uid://c2s6rhvkaqfwg" path="res://assets/cretaceous-16-1x.png" id="13_50cep"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_41u22"]
 atlas = ExtResource("4_0lw5n")
@@ -32,6 +37,18 @@ region = Rect2(64, 0, 16, 16)
 [sub_resource type="AtlasTexture" id="AtlasTexture_ofy33"]
 atlas = ExtResource("4_0lw5n")
 region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3et6r"]
+atlas = ExtResource("3_50cep")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_so3kc"]
+atlas = ExtResource("3_50cep")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ohau6"]
+atlas = ExtResource("3_50cep")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_cicko"]
 atlas = ExtResource("2_dp8ca")
@@ -154,6 +171,20 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_3et6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_so3kc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ohau6")
+}],
+"loop": false,
+"name": &"death",
+"speed": 3.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_cicko")
 }, {
 "duration": 1.0,
@@ -250,6 +281,12 @@ size = Vector2(5.53125, 5)
 radius = 3.98
 height = 11.5
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_50cep"]
+shader = ExtResource("10_irmqu")
+shader_parameter/brightness = 0.095
+shader_parameter/source_palette = ExtResource("13_50cep")
+shader_parameter/target_palette = ExtResource("13_50cep")
+
 [node name="Node2D" type="Node2D"]
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
@@ -263,9 +300,9 @@ script = ExtResource("1_agfs1")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 position = Vector2(0, -1)
 sprite_frames = SubResource("SpriteFrames_cicko")
-animation = &"attack"
+animation = &"death"
 autoplay = "attack"
-frame = 7
+frame = 2
 frame_progress = 1.0
 speed_scale = 1.04
 
@@ -311,7 +348,7 @@ drag_vertical_enabled = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="CharacterBody2D/Camera2D"]
 
-[node name="TextureProgressBar" type="TextureProgressBar" parent="CharacterBody2D/Camera2D/CanvasLayer"]
+[node name="TextureProgressBar" type="TextureProgressBar" parent="CharacterBody2D/Camera2D/CanvasLayer" node_paths=PackedStringArray("player")]
 offset_left = -4.0
 offset_top = -20.0
 offset_right = 152.0
@@ -322,10 +359,24 @@ value = 20.0
 texture_under = ExtResource("7_a5ia6")
 texture_progress = ExtResource("8_0dpix")
 texture_progress_offset = Vector2(0, 15)
+script = ExtResource("9_0dpix")
+player = NodePath("../../..")
 
 [node name="CoyoteTimer" type="Timer" parent="CharacterBody2D"]
 wait_time = 0.236
 one_shot = true
+
+[node name="DeathSound" type="AudioStreamPlayer2D" parent="CharacterBody2D"]
+position = Vector2(-183, 215)
+stream = ExtResource("11_8yvht")
+
+[node name="ColorRect2" type="ColorRect" parent="."]
+visible = false
+material = SubResource("ShaderMaterial_50cep")
+offset_left = -27.0
+offset_top = -31.0
+offset_right = 530.0
+offset_bottom = 288.0
 
 [connection signal="body_entered" from="CharacterBody2D/player_area" to="CharacterBody2D" method="_on_area_2d_body_entered"]
 [connection signal="timeout" from="CharacterBody2D/CoyoteTimer" to="CharacterBody2D" method="_on_coyote_timer_timeout"]

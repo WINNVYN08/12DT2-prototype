@@ -1,11 +1,11 @@
-[gd_scene load_steps=7 format=4 uid="uid://y6ps0tm2sfph"]
+[gd_scene load_steps=7 format=4 uid="uid://c5ojyc0wuykk1"]
 
-[ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="1_7ysse"]
-[ext_resource type="Texture2D" uid="uid://cc1j2r0aw8yo8" path="res://assets/nestle.png" id="2_mhmv5"]
-[ext_resource type="Texture2D" uid="uid://d1y576wr21l0f" path="res://assets/oak_woods_tileset.png" id="3_ckneg"]
+[ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="1_7eilg"]
+[ext_resource type="Texture2D" uid="uid://cc1j2r0aw8yo8" path="res://assets/nestle.png" id="2_0vm3x"]
+[ext_resource type="Texture2D" uid="uid://d1y576wr21l0f" path="res://assets/oak_woods_tileset.png" id="3_gkxg2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lw0yp"]
-texture = ExtResource("2_mhmv5")
+texture = ExtResource("2_0vm3x")
 0:0/0 = 0
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 1:0/0 = 0
@@ -11088,7 +11088,7 @@ texture = ExtResource("2_mhmv5")
 4:101/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jan30"]
-texture = ExtResource("3_ckneg")
+texture = ExtResource("3_gkxg2")
 texture_region_size = Vector2i(24, 24)
 4:2/0 = 0
 4:2/0/physics_layer_0/polygon_0/points = PackedVector2Array(-12, -12, 12, -12, 12, 12, -12, 12)
@@ -11815,7 +11815,7 @@ sources/1 = SubResource("TileSetAtlasSource_jan30")
 
 [node name="Node2D" type="Node2D"]
 
-[node name="enemy1" parent="." instance=ExtResource("1_7ysse")]
+[node name="enemy1" parent="." instance=ExtResource("1_7eilg")]
 position = Vector2(259, 167)
 
 [node name="platforms" type="TileMapLayer" parent="."]

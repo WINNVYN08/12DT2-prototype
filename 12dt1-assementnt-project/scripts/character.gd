@@ -20,8 +20,8 @@ var sliding = false
 @export var wall_jump_speed = -190
 @export var wall_fall_speed = 50
 
-
-var health = 100
+var health = 0
+var max_health = 100
 var can_attack_again = true
 var wall_jump = true 
 var variable_jump = true
@@ -42,7 +42,7 @@ func _ready():
 	Global.playerBody
 	#setting the cayote time
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
-	
+	health = max_health
 	pass
 
 
@@ -167,6 +167,14 @@ func start_attack():
 func player_health():
 	if health <= 0 :
 		speed = 0 
+		jump_speed = 0
+		_animated_sprite.play("death")		
+		Engine.time_scale = 0.5
+		$"../ColorRect2".show()
+		$DeathSound.play()
+		await get_tree().create_timer(1).timeout
+		get_tree().change_scene_to_file("res://scenes/Game_over_screen.tscn")
+		
 	
 func attack_timer() -> void:
 
