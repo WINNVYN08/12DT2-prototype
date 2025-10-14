@@ -1,10 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://ddettlisbibkt"]
+[gd_scene load_steps=12 format=3 uid="uid://ddettlisbibkt"]
 
 [ext_resource type="Shader" uid="uid://cykk6c2gajhks" path="res://scripts/title_screen.gdshader" id="1_y884y"]
 [ext_resource type="Texture2D" uid="uid://bynvarrfq4m5l" path="res://assets/game_over_pallete.png" id="2_8vey4"]
 [ext_resource type="Texture2D" uid="uid://b5vfo542rwhii" path="res://assets/077.png" id="3_pvb4l"]
 [ext_resource type="AudioStream" uid="uid://qesldhel7ffb" path="res://assets/game_over_sound.wav" id="4_8vey4"]
-[ext_resource type="AudioStream" uid="uid://dc1o75jo4k12s" path="res://assets/game_over.mp3" id="5_pvb4l"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_wtjiu"]
 shader = ExtResource("1_y884y")
@@ -200,8 +199,3 @@ uppercase = true
 position = Vector2(-310, -156)
 stream = ExtResource("4_8vey4")
 volume_db = 4.561
-
-[node name="GameOver" type="AudioStreamPlayer2D" parent="."]
-position = Vector2(-158, 166)
-stream = ExtResource("5_pvb4l")
-autoplay = true

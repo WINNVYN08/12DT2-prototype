@@ -1,10 +1,11 @@
-[gd_scene load_steps=13 format=4 uid="uid://bnuo6qk7kcbng"]
+[gd_scene load_steps=14 format=4 uid="uid://bnuo6qk7kcbng"]
 
 [ext_resource type="Texture2D" uid="uid://cc1j2r0aw8yo8" path="res://assets/nestle.png" id="1_5iqp5"]
 [ext_resource type="Texture2D" uid="uid://d1y576wr21l0f" path="res://assets/oak_woods_tileset.png" id="2_5vsfe"]
 [ext_resource type="PackedScene" uid="uid://bd4nbyoylde07" path="res://scenes/character.tscn" id="3_vmtld"]
 [ext_resource type="Script" uid="uid://birfng6ukmq5g" path="res://scripts/lv3_door_a.gd" id="4_5r2iv"]
 [ext_resource type="Script" uid="uid://b671afbbe6i10" path="res://scripts/lv3_door_b.gd" id="5_5ga14"]
+[ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="6_5vsfe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i1dcg"]
 texture = ExtResource("1_5iqp5")
@@ -17408,6 +17409,9 @@ script = ExtResource("5_5ga14")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="door_b/Area2D"]
 position = Vector2(287, 280)
 shape = SubResource("RectangleShape2D_5iqp5")
+
+[node name="enemy" parent="." instance=ExtResource("6_5vsfe")]
+position = Vector2(99, 87)
 
 [connection signal="area_entered" from="door_a/Area2D" to="door_a" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="door_b/Area2D" to="door_b" method="_on_area_2d_area_entered"]

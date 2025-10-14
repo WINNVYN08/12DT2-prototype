@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://dpn1fhvsh2bg6"]
+[gd_scene load_steps=14 format=4 uid="uid://dpn1fhvsh2bg6"]
 
 [ext_resource type="Shader" uid="uid://cykk6c2gajhks" path="res://scripts/title_screen.gdshader" id="1_vjnmv"]
 [ext_resource type="Texture2D" uid="uid://bfyq0bvm4d62p" path="res://assets/game_pallete.png" id="2_vjnmv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cc1j2r0aw8yo8" path="res://assets/nestle.png" id="4_g17gd"]
 [ext_resource type="Texture2D" uid="uid://d1y576wr21l0f" path="res://assets/oak_woods_tileset.png" id="5_7xgum"]
 [ext_resource type="PackedScene" uid="uid://bd4nbyoylde07" path="res://scenes/character.tscn" id="6_m0i4q"]
+[ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="7_mwnqo"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5yges"]
 shader = ExtResource("1_vjnmv")
@@ -17412,3 +17413,12 @@ tile_set = SubResource("TileSet_3gccu")
 
 [node name="Node2D" parent="." instance=ExtResource("6_m0i4q")]
 position = Vector2(26, 33)
+
+[node name="enemy2" parent="." instance=ExtResource("7_mwnqo")]
+position = Vector2(421, 40)
+
+[node name="enemy3" parent="." instance=ExtResource("7_mwnqo")]
+position = Vector2(229, 227)
+
+[node name="enemy4" parent="." instance=ExtResource("7_mwnqo")]
+position = Vector2(326, 243)

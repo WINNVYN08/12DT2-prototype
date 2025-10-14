@@ -30,7 +30,7 @@ var double_jump_ready = false
 var start_position = Vector2.ZERO
 var is_attacking = false
 var jumping = false
-
+var can_die = true
 var coyote_frames = 60
 var coyote = false
 var last_floor = false  
@@ -39,7 +39,7 @@ var last_floor = false
 func _ready():
 	# whether or not the attackcollison i hidden
 	sword_collision.disabled = true
-	Global.playerBody
+
 	#setting the cayote time
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
 	health = max_health
@@ -107,6 +107,7 @@ func _physics_process(delta):
 		wall_jump = true
 
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote):
+		$"../sounds/JumpSound".play()	
 		velocity.y = jump_speed
 		_animated_sprite.play("jump")
 		jumping = true
@@ -118,12 +119,14 @@ func _physics_process(delta):
 		variable_jump = false 
 
 	elif Input.is_action_just_pressed("jump") and not is_on_floor() and double_jump_ready:
+		$"../sounds/DoubleJumpSound".play()	
 		velocity.y = double_jump_speed
 		_animated_sprite.play("double-Jump")
 		double_jump_ready = false
 		
 
 	if Input.is_action_just_pressed("dash") and dash_ready:
+		$"../sounds/DashSound".play()
 		dash_ready = false
 		velocity.x = dir * (dash_speed * 2)
 		velocity.y = -velocity.y /2
@@ -165,12 +168,14 @@ func start_attack():
 		attack_timer()
 
 func player_health():
-	if health <= 0 :
-		speed = 0 
-		jump_speed = 0
-		_animated_sprite.play("death")	
-		$DeathSound.play()
-		get_tree().change_scene_to_file("res://scenes/Game_over_screen.tscn")
+	if can_die == true:
+		if health <= 0 :
+			speed = 0 
+			jump_speed = 0
+			_animated_sprite.play("death")	
+			$"../sounds/DeathSound".play()	
+			can_die = false
+			_death()
 		
 	
 func attack_timer() -> void:
@@ -186,9 +191,14 @@ func attack_timer() -> void:
 func _on_area_2d_body_entered(body: Node) -> void:
 	if body.has_meta("enemy"):
 		health -= 20
+		$"../sounds/HurtSound".play()
 	pass # Replace with function body.
 	
 
 func _on_coyote_timer_timeout() -> void:
 	coyote = false
 	pass # Replace with function body.
+
+func _death():
+	await get_tree().create_timer(1).timeout
+	get_tree().change_scene_to_file("res://scenes/Game_over_screen.tscn")

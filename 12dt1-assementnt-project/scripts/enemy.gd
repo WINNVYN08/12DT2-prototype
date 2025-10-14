@@ -2,7 +2,7 @@ extends CharacterBody2D
 
 class_name  enemy_one
 
-var speed = 60
+var speed = -60
 var gravity = 900
 
 var facing_right = false
