@@ -1,4 +1,4 @@
-[gd_scene load_steps=55 format=3 uid="uid://bd4nbyoylde07"]
+[gd_scene load_steps=56 format=3 uid="uid://bd4nbyoylde07"]
 
 [ext_resource type="Script" uid="uid://u7e8anwx4k42" path="res://scripts/character.gd" id="1_agfs1"]
 [ext_resource type="Texture2D" uid="uid://bh0qpyf8pw3jr" path="res://assets/cat_jump.png" id="2_dp8ca"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://dsfksupg0kya8" path="res://assets/greenbar (2).png" id="8_0dpix"]
 [ext_resource type="Script" uid="uid://bfk0mj121rgoj" path="res://scenes/health_bar.gd" id="9_0dpix"]
 [ext_resource type="Shader" uid="uid://c82n4yffa5is6" path="res://scripts/pallete.gdshader" id="10_irmqu"]
+[ext_resource type="PackedScene" uid="uid://dul0jca6tyhkx" path="res://scenes/diamond_container.tscn" id="10_vovfy"]
 [ext_resource type="AudioStream" uid="uid://bidceygi4yw1f" path="res://assets/death_sound.wav" id="11_8yvht"]
 [ext_resource type="Texture2D" uid="uid://c2s6rhvkaqfwg" path="res://assets/cretaceous-16-1x.png" id="13_50cep"]
 [ext_resource type="AudioStream" uid="uid://vf8l1g0btd4e" path="res://assets/jump_sound.wav" id="13_ih8y6"]
@@ -361,8 +362,13 @@ texture_progress_offset = Vector2(0, 15)
 script = ExtResource("9_0dpix")
 player = NodePath("../../..")
 
+[node name="diamond_Container" parent="CharacterBody2D/Camera2D/CanvasLayer" instance=ExtResource("10_vovfy")]
+offset_left = 376.0
+offset_top = 16.0
+offset_right = 468.0
+
 [node name="CoyoteTimer" type="Timer" parent="CharacterBody2D"]
-wait_time = 0.236
+wait_time = 0.192
 one_shot = true
 
 [node name="global" type="Node" parent="CharacterBody2D"]

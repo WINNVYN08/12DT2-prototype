@@ -15,11 +15,12 @@ var friction = 0
 var slide_direction = 0
 var sliding = false
 @export_range(0.0 , 1.0) var slide_friction = 0.009
-
+ 
 @export var wall_jump_pushback = 200
 @export var wall_jump_speed = -190
 @export var wall_fall_speed = 50
 
+var diamond = 0
 var health = 0
 var max_health = 100
 var can_attack_again = true
@@ -192,6 +193,10 @@ func _on_area_2d_body_entered(body: Node) -> void:
 	if body.has_meta("enemy"):
 		health -= 20
 		$"../sounds/HurtSound".play()
+	if body.has_meta("diamond"):
+		diamond += 1
+		$"../sounds/HurtSound".play()
+		
 	pass # Replace with function body.
 	
 

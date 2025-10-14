@@ -4,8 +4,8 @@
 [ext_resource type="Texture2D" uid="uid://d1y576wr21l0f" path="res://assets/oak_woods_tileset.png" id="2_dejc8"]
 [ext_resource type="PackedScene" uid="uid://bd4nbyoylde07" path="res://scenes/character.tscn" id="3_oq2kd"]
 [ext_resource type="Script" uid="uid://crmbqb6ii6jp0" path="res://scripts/lv5_door_b.gd" id="4_dejc8"]
-[ext_resource type="Script" uid="uid://cueyllmskegxl" path="res://scenes/lv5_door_a.gd" id="5_duakw"]
-[ext_resource type="Script" uid="uid://bmjw5s72fnq2w" path="res://scenes/lv5_door_c.gd" id="6_pfeiq"]
+[ext_resource type="Script" uid="uid://cueyllmskegxl" path="res://scripts/lv5_door_a.gd" id="5_duakw"]
+[ext_resource type="Script" uid="uid://bmjw5s72fnq2w" path="res://scripts/lv5_door_c.gd" id="6_pfeiq"]
 [ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="7_f5ios"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_agqyf"]

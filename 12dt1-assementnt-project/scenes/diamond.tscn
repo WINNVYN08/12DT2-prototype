@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://dh3a4sr2dwsdf"]
+
+[ext_resource type="Script" uid="uid://byisftr70etqr" path="res://scripts/diamond_panel.gd" id="1_okr8r"]
+[ext_resource type="Texture2D" uid="uid://dp61kxvnocg16" path="res://assets/Diamond.png" id="2_bd64o"]
+
+[node name="Panel" type="Panel"]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(28, 24)
+offset_right = 14.0
+offset_bottom = 12.0
+script = ExtResource("1_okr8r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-10, -12)
+scale = Vector2(2, 2)
+texture = ExtResource("2_bd64o")
+centered = false
+hframes = 5
