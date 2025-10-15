@@ -150,7 +150,8 @@ func _physics_process(delta):
 	if Input.is_action_just_pressed("attack") and not is_attacking:
 		start_attack()
 		
-
+	if Input.is_action_just_pressed("return"):
+		get_tree().change_scene_to_file("res://scenes/act_1.tscn")
 			
 		
 	last_floor = is_on_floor()

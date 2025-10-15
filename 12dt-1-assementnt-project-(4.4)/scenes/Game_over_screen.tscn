@@ -1,0 +1,201 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddettlisbibkt"]
+
+[ext_resource type="Shader" uid="uid://cykk6c2gajhks" path="res://scripts/title_screen.gdshader" id="1_y884y"]
+[ext_resource type="Texture2D" uid="uid://bynvarrfq4m5l" path="res://assets/game_over_pallete.png" id="2_8vey4"]
+[ext_resource type="Texture2D" uid="uid://b5vfo542rwhii" path="res://assets/077.png" id="3_pvb4l"]
+[ext_resource type="AudioStream" uid="uid://qesldhel7ffb" path="res://assets/game_over_sound.wav" id="4_8vey4"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_wtjiu"]
+shader = ExtResource("1_y884y")
+shader_parameter/screen_height = 99999.0
+shader_parameter/amplitude = 0.0
+shader_parameter/frequency = 3.0
+shader_parameter/speed = 0.0
+shader_parameter/amplitude_vertical = 0.0
+shader_parameter/frequency_vertical = 0.0
+shader_parameter/speed_vertical = 0.0
+shader_parameter/scroll_direction = Vector2(20, 20)
+shader_parameter/scrolling_speed = 0.0
+shader_parameter/enable_palette_cycling = true
+shader_parameter/palette = ExtResource("2_8vey4")
+shader_parameter/palette_speed = 0.4
+
+[sub_resource type="Animation" id="Animation_5w21t"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(39, 226)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../TextureRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../AudioStreamPlayer2D:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="Animation" id="Animation_wtjiu"]
+resource_name = "new_animation"
+length = 8.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0666667, 3.46667),
+"transitions": PackedFloat32Array(0.233258, 1),
+"update": 0,
+"values": [Vector2(57, 226), Vector2(57, 84)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:visible_ratio")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.0666667, 4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 1.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../TextureRect:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.0333333, 4.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../AudioStreamPlayer2D:playing")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(4.03333),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_pvb4l"]
+resource_name = "text_move"
+markers = [{
+"color": Color(1, 1, 1, 1),
+"name": &"new_marker",
+"time": 0.43
+}]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8h30r"]
+_data = {
+&"RESET": SubResource("Animation_5w21t"),
+&"new_animation": SubResource("Animation_wtjiu"),
+&"text_move": SubResource("Animation_pvb4l")
+}
+
+[sub_resource type="SystemFont" id="SystemFont_5w21t"]
+font_names = PackedStringArray("FantasyDraft")
+font_weight = 525
+font_stretch = 200
+msdf_pixel_range = -9
+oversampling = 10.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_8h30r"]
+line_spacing = 4.0
+font = SubResource("SystemFont_5w21t")
+font_size = 54
+shadow_size = 11
+shadow_color = Color(1, 1, 1, 0.109804)
+shadow_offset = Vector2(0, 0)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -310.0
+offset_top = -156.0
+offset_right = 679.0
+offset_bottom = 389.0
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+texture_filter = 1
+texture_repeat = 2
+material = SubResource("ShaderMaterial_wtjiu")
+offset_left = -22.0
+offset_top = -20.0
+offset_right = 494.0
+offset_bottom = 323.0
+texture = ExtResource("3_pvb4l")
+expand_mode = 1
+flip_v = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(231, 140)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("Label")
+libraries = {
+&"": SubResource("AnimationLibrary_8h30r")
+}
+autoplay = "new_animation"
+
+[node name="Label" type="Label" parent="AnimationPlayer"]
+offset_left = 57.0
+offset_top = 84.0003
+offset_right = 591.0
+offset_bottom = 228.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_8h30r")
+autowrap_mode = 1
+justification_flags = 0
+uppercase = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+position = Vector2(-310, -156)
+stream = ExtResource("4_8vey4")
+volume_db = 4.561

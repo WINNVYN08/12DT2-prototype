@@ -1,0 +1,126 @@
+[gd_scene load_steps=12 format=3 uid="uid://daqw32so5e6aw"]
+
+[ext_resource type="Script" uid="uid://dqr2oxksaamuh" path="res://scripts/start_game_button.gd" id="1_fgkus"]
+[ext_resource type="Texture2D" uid="uid://c881f2hqkjiuy" path="res://assets/cat_run-Sheet.png" id="3_mgrm8"]
+
+[sub_resource type="Curve2D" id="Curve2D_s4lrb"]
+bake_interval = 5.05
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, -26, 226, 0, 0, 0, 0, 559, 228, 0, 0, 0, 0, 559, 134, 0, 0, 0, 0, 543, 13, 0, 0, 0, 0, 536, -49, 0, 0, 0, 0, 225, -61, 0, 0, 0, 0, -57, -41, 0, 0, 0, 0, -114, 217)
+}
+point_count = 8
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc4i4"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e54dn"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yumr"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cs5ya"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mykxm"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(64, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tklts"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u26n3"]
+atlas = ExtResource("3_mgrm8")
+region = Rect2(96, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ib7db"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc4i4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e54dn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3yumr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cs5ya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mykxm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tklts")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u26n3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 13.0
+}]
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource("1_fgkus")
+
+[node name="Label" type="Label" parent="."]
+offset_left = 1444.0
+offset_top = -248.0
+offset_right = 2459.0
+offset_bottom = 298.0
+scale = Vector2(0.943213, 0.942948)
+theme_override_font_sizes/font_size = 350
+text = "TITLE"
+
+[node name="start" type="Button" parent="."]
+anchors_preset = -1
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 173.0
+offset_top = 154.0
+offset_right = 313.0
+offset_bottom = 204.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "Start game"
+
+[node name="Path2D" type="Path2D" parent="."]
+curve = SubResource("Curve2D_s4lrb")
+
+[node name="PathFollow1" type="PathFollow2D" parent="Path2D"]
+position = Vector2(521.133, -49.5736)
+rotation = -3.10303
+progress = 878.37
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Path2D/PathFollow1"]
+position = Vector2(-5.05466, -10.975)
+rotation = -0.00497508
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ib7db")
+autoplay = "default"
+frame_progress = 0.702614
+
+[node name="PathFollow2" type="PathFollow2D" parent="Path2D"]
+position = Vector2(-26, 226)
+rotation = 0.00341879
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="Path2D/PathFollow2"]
+position = Vector2(2.00683, 1.99316)
+rotation = -0.00497508
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_ib7db")
+autoplay = "default"
+frame_progress = 0.910491
+
+[connection signal="pressed" from="start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="start" to="." method="_on_start_button_pressed"]

@@ -1,7 +1,6 @@
-extends Node2D
+extends HBoxContainer
 
 
-var diamond_collected = false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -11,8 +10,11 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	diamond_collected = true
+func updateDiamonds(diamond_amount: int):
+	var diamond = get_children()
 	
-	pass # Replace with function body.
+	for i in range(diamond_amount):
+		diamond[i].update(true)
+		
+	for i in range(diamond_amount, diamond.size()):
+		diamond[i].update(false)
