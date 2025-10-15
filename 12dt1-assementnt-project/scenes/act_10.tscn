@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=4 uid="uid://b0t7ke6s82d47"]
+[gd_scene load_steps=12 format=4 uid="uid://b0t7ke6s82d47"]
 
 [ext_resource type="Texture2D" uid="uid://cc1j2r0aw8yo8" path="res://assets/nestle.png" id="1_7qedb"]
 [ext_resource type="Texture2D" uid="uid://d1y576wr21l0f" path="res://assets/oak_woods_tileset.png" id="2_swqcl"]
 [ext_resource type="PackedScene" uid="uid://bd4nbyoylde07" path="res://scenes/character.tscn" id="3_bve7f"]
+[ext_resource type="PackedScene" uid="uid://chudan7qc7ohm" path="res://scenes/diamond_in_game.tscn" id="4_swqcl"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_g27h3"]
 texture = ExtResource("1_7qedb")
@@ -22928,3 +22929,6 @@ tile_set = SubResource("TileSet_yj64b")
 
 [node name="Node2D" parent="." instance=ExtResource("3_bve7f")]
 position = Vector2(17, 140)
+
+[node name="game_diamond" parent="." instance=ExtResource("4_swqcl")]
+position = Vector2(315, 131)
