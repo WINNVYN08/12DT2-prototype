@@ -13,3 +13,6 @@ func _process(delta: float) -> void:
 		print(diamond_current)
 	else:
 		print("diamond_Container not found or was freed!")
+	
+	if diamond_current >= 3 :
+			get_tree().change_scene_to_file("res://scenes/win_screen.tscn")

@@ -1,58 +1,37 @@
-[gd_scene load_steps=2 format=3 uid="uid://ca64nsafkhw2"]
+[gd_scene load_steps=3 format=3 uid="uid://ca64nsafkhw2"]
 
 [ext_resource type="Script" uid="uid://j5v44nnif683" path="res://scripts/start_menu.gd" id="1_ouf4f"]
+
+[sub_resource type="SystemFont" id="SystemFont_ouf4f"]
+font_names = PackedStringArray("FantasyDraft")
+oversampling = 10.0
 
 [node name="Node2D" type="Node2D"]
 script = ExtResource("1_ouf4f")
 
-[node name="button controller" type="Control" parent="."]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -135.0
+offset_top = -60.0
+offset_right = 675.0
+offset_bottom = 368.0
+color = Color(0, 0, 0, 1)
 
-[node name="Continue" type="Button" parent="button controller"]
-layout_mode = 0
-offset_left = 241.0
-offset_top = 474.0
-offset_right = 419.0
-offset_bottom = 531.0
-text = "Continue "
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(-135, -60)
+zoom = Vector2(2, 2)
+limit_left = 0
+limit_top = 0
+limit_right = 454
+limit_bottom = 272
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
 
-[node name="New game" type="Button" parent="button controller"]
-layout_mode = 0
-offset_left = 129.0
-offset_top = 177.0
-offset_right = 306.0
-offset_bottom = 235.0
-text = "New Game"
-
-[node name="Options" type="Button" parent="button controller"]
-layout_mode = 0
-offset_left = 1029.0
-offset_top = 418.0
-offset_right = 1123.0
-offset_bottom = 470.0
-text = "Options"
-
-[node name="Credits" type="Button" parent="button controller"]
-layout_mode = 0
-offset_left = 21.0
-offset_top = 405.0
-offset_right = 117.0
-offset_bottom = 464.0
-text = "Credits"
-
-[node name="quit" type="Button" parent="button controller"]
-layout_mode = 0
-offset_left = 709.0
-offset_top = 473.0
-offset_right = 890.0
-offset_bottom = 532.0
-text = "Quit"
-
-[connection signal="pressed" from="button controller/Continue" to="." method="_on_continue_pressed"]
-[connection signal="pressed" from="button controller/New game" to="." method="_on_new_game_pressed"]
-[connection signal="pressed" from="button controller/Options" to="." method="_on_options_pressed"]
-[connection signal="pressed" from="button controller/Credits" to="." method="_on_credits_pressed"]
-[connection signal="pressed" from="button controller/quit" to="." method="_on_quit_pressed"]
+[node name="Label" type="Label" parent="."]
+offset_left = 7.0
+offset_top = 56.0
+offset_right = 607.0
+offset_bottom = 147.0
+theme_override_fonts/font = SubResource("SystemFont_ouf4f")
+theme_override_font_sizes/font_size = 6
+text = "Remember press\"R\" to return back to the first level when you collect an item"
