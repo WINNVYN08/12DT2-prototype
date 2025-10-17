@@ -6,7 +6,7 @@ func _ready() -> void:
 	pass # Replace with function body.
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
+# handles health bar
 func _process(delta: float) -> void:
 	value = player.health*100/player.max_health
 	pass

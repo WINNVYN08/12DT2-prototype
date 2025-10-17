@@ -8,7 +8,7 @@ var gravity = 900
 var facing_right = false
 var player: CharacterBody2D
 
-
+#handles the basic enemy ai
 func _process(delta):
 	if !is_on_floor():
 		velocity.y += gravity * delta
@@ -18,6 +18,7 @@ func _process(delta):
 	velocity.x = speed
 	move_and_slide()
 		
+# handles fli0p
 func _flip():
 	facing_right = !facing_right
 	

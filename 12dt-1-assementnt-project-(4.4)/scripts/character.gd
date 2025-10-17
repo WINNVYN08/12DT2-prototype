@@ -61,11 +61,13 @@ func _physics_process(delta):
 		_animated_sprite.flip_h = true
 	elif dir >0 :
 		_animated_sprite.flip_h = false
-		
+	
+	#handles stomp
 	if Input.is_action_just_pressed("down") and not is_on_floor():
 		velocity.y = stomp_speed
 		velocity.x = 0
-		
+	
+	# handles slide
 	if Input.is_action_pressed("down") and is_on_floor() and dir != 0 and not sliding :
 		dash_ready = false
 		double_jump_ready = false
@@ -77,11 +79,12 @@ func _physics_process(delta):
 	if abs(velocity.x) < 0.5:
 		sliding = false
 		velocity.x = 0.0
-
+	
+	#handles run animation
 	if velocity.x != 0 and ! sliding and is_on_floor():
 		_animated_sprite.play("run")	
 		
-			
+	# handles idle animation
 	if velocity.x == 0 and is_on_floor():
 		_animated_sprite.play("idle")		
 		
@@ -93,6 +96,7 @@ func _physics_process(delta):
 		variable_jump = true
 		wall_jump = true
 
+	#handles jump and coyote time 
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or coyote):
 		$"../sounds/JumpSound".play()	
 		velocity.y = jump_speed
@@ -101,6 +105,7 @@ func _physics_process(delta):
 		dash_ready = true
 		double_jump_ready = true
 
+# handles variable jump and double jump
 	if Input.is_action_just_released("jump")and variable_jump == true:
 		velocity.y *= 0.4 
 		variable_jump = false 
@@ -110,19 +115,21 @@ func _physics_process(delta):
 		_animated_sprite.play("double-Jump")
 		double_jump_ready = false
 		
-
+	# handles dash
 	if Input.is_action_just_pressed("dash") and dash_ready:
 		$"../sounds/DashSound".play()
 		dash_ready = false
 		velocity.x = dir * (dash_speed * 2)
 		velocity.y = -velocity.y /2
 		
+	# handles after walljump code
 	if Input.is_action_just_pressed("jump") and is_on_wall() and wall_jump and ! is_on_floor():
 			velocity.y = wall_jump_speed
 			wall_jump = false
 			velocity.x = get_wall_normal().x * wall_jump_pushback
 			double_jump_ready = true
 	
+	# sets gravity from wall jump back to norml 
 	if is_on_wall() and velocity.y > 0:
 		gravity = wall_fall_speed
 	else:
@@ -132,18 +139,17 @@ func _physics_process(delta):
 		coyote = true
 		$CoyoteTimer.start()
 		
-
+	# handles manua scene reset 
 	if Input.is_action_just_pressed("return"):
 		get_tree().change_scene_to_file("res://scenes/act_1.tscn")
 			
-		
 	last_floor = is_on_floor()
 	player_health()
 	apply_floor_snap() 
 	move_and_slide()
 	
 	
-
+# handeles player health 
 func player_health():
 	if can_die == true:
 		if health <= 0 :
@@ -154,9 +160,7 @@ func player_health():
 			can_die = false
 			_death()
 		
-	
-
-
+# handles the player area body code
 func _on_area_2d_body_entered(body: Node) -> void:
 	if body.has_meta("enemy"):
 		health -= 20
@@ -167,11 +171,14 @@ func _on_area_2d_body_entered(body: Node) -> void:
 		
 	pass # Replace with function body.
 	
-
+	
+# after coyote time is over 
 func _on_coyote_timer_timeout() -> void:
 	coyote = false
 	pass # Replace with function body.
 
+
+# hanles the death scene change 
 func _death():
 	await get_tree().create_timer(1).timeout
 	get_tree().change_scene_to_file("res://scenes/Game_over_screen.tscn")

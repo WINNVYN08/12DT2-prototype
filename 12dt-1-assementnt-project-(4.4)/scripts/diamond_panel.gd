@@ -10,6 +10,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+#handles the sprites for the diamond in the ui element
 func update(whole:bool):
 	if whole: sprite.frame = 0
 	else: sprite.frame = 4

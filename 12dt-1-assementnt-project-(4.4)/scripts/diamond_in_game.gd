@@ -12,7 +12,7 @@ func _process(delta: float) -> void:
 	
 	pass
 
-
+# handles the diamond collection collision
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	global.diamond_current += 0.5
 	print("Collected diamond! Total:", global.diamond_current)

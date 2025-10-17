@@ -10,6 +10,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+# handles updating the diamond ui element
 func updateDiamonds(diamond_amount: int):
 	var diamond = get_children()
 	
