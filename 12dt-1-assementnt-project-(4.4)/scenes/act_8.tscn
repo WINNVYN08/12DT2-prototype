@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://dpn1fhvsh2bg6"]
+[gd_scene load_steps=18 format=4 uid="uid://dpn1fhvsh2bg6"]
 
 [ext_resource type="Shader" uid="uid://cykk6c2gajhks" path="res://scripts/title_screen.gdshader" id="1_vjnmv"]
 [ext_resource type="Texture2D" uid="uid://bfyq0bvm4d62p" path="res://assets/game_pallete.png" id="2_vjnmv"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="7_mwnqo"]
 [ext_resource type="PackedScene" uid="uid://chudan7qc7ohm" path="res://scenes/diamond_in_game.tscn" id="8_g17gd"]
 [ext_resource type="Script" uid="uid://bmxc7d4aw1w6" path="res://scenes/lv8_door_a.gd" id="9_7xgum"]
+[ext_resource type="Script" uid="uid://bpcm6g7bgsb0t" path="res://scenes/lv8_door_b.gd" id="10_7xgum"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5yges"]
 shader = ExtResource("1_vjnmv")
@@ -17420,7 +17421,7 @@ tile_set = SubResource("TileSet_3gccu")
 position = Vector2(26, 33)
 
 [node name="enemy2" parent="." instance=ExtResource("7_mwnqo")]
-position = Vector2(421, 40)
+position = Vector2(158, 212)
 
 [node name="enemy3" parent="." instance=ExtResource("7_mwnqo")]
 position = Vector2(229, 227)
@@ -17441,11 +17442,12 @@ position = Vector2(471, 8.5)
 shape = SubResource("RectangleShape2D_m0i4q")
 
 [node name="door_b" type="Node" parent="."]
+script = ExtResource("10_7xgum")
 
 [node name="Area2D" type="Area2D" parent="door_b"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="door_b/Area2D"]
-position = Vector2(471, 8.5)
+position = Vector2(468, 212)
 shape = SubResource("RectangleShape2D_m0i4q")
 
 [connection signal="area_entered" from="door_a/Area2D" to="door_a" method="_on_area_2d_area_entered"]

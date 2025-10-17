@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=4 uid="uid://ccwb1jxq6nytb"]
+[gd_scene load_steps=18 format=4 uid="uid://ccwb1jxq6nytb"]
 
 [ext_resource type="Texture2D" uid="uid://cc1j2r0aw8yo8" path="res://assets/nestle.png" id="1_jljwd"]
 [ext_resource type="Texture2D" uid="uid://d1y576wr21l0f" path="res://assets/oak_woods_tileset.png" id="2_dejc8"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" uid="uid://bmjw5s72fnq2w" path="res://scripts/lv5_door_c.gd" id="6_pfeiq"]
 [ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="7_f5ios"]
 [ext_resource type="PackedScene" uid="uid://chudan7qc7ohm" path="res://scenes/diamond_in_game.tscn" id="8_pfeiq"]
+[ext_resource type="PackedScene" uid="uid://cfpoesywrsrh8" path="res://scenes/transtion.tscn" id="9_f5ios"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_agqyf"]
 texture = ExtResource("1_jljwd")
@@ -17434,6 +17435,8 @@ position = Vector2(327, 85)
 
 [node name="game_diamond" parent="." instance=ExtResource("8_pfeiq")]
 position = Vector2(-121, 93)
+
+[node name="transition" parent="." instance=ExtResource("9_f5ios")]
 
 [connection signal="area_entered" from="door_b/Area2D" to="door_b" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="door_a/Area2D" to="door_a" method="_on_area_2d_area_entered"]

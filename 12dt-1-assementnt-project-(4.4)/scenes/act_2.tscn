@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=4 uid="uid://cheysrycnc1ty"]
+[gd_scene load_steps=21 format=4 uid="uid://cheysrycnc1ty"]
 
 [ext_resource type="Script" uid="uid://dwj1odr67owxn" path="res://scenes/acts.gd" id="1_6b5o8"]
 [ext_resource type="Shader" uid="uid://cykk6c2gajhks" path="res://scripts/title_screen.gdshader" id="1_175kj"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" uid="uid://dcpxoho3q4tts" path="res://scripts/lv2_door_b.gd" id="5_37aou"]
 [ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="9_175kj"]
 [ext_resource type="PackedScene" uid="uid://chudan7qc7ohm" path="res://scenes/diamond_in_game.tscn" id="10_mv7k8"]
+[ext_resource type="PackedScene" uid="uid://cfpoesywrsrh8" path="res://scenes/transtion.tscn" id="12_vx6q7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vx6q7"]
 shader = ExtResource("1_175kj")
@@ -17456,6 +17457,8 @@ wall_min_slide_angle = 0.462512
 
 [node name="game_diamond" parent="." instance=ExtResource("10_mv7k8")]
 position = Vector2(34, -76)
+
+[node name="transition" parent="." instance=ExtResource("12_vx6q7")]
 
 [connection signal="area_entered" from="door_a/Area2D" to="door_a" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="door_b/Area2D" to="door_b" method="_on_area_2d_area_entered"]

@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
-	global.diamond_current += 1
+	global.diamond_current += 0.5
 	print("Collected diamond! Total:", global.diamond_current)
 	#queue_free()
 	hide()
