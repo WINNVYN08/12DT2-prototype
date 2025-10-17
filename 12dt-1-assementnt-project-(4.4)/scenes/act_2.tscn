@@ -1,5 +1,6 @@
-[gd_scene load_steps=18 format=4 uid="uid://cheysrycnc1ty"]
+[gd_scene load_steps=20 format=4 uid="uid://cheysrycnc1ty"]
 
+[ext_resource type="Script" uid="uid://dwj1odr67owxn" path="res://scenes/acts.gd" id="1_6b5o8"]
 [ext_resource type="Shader" uid="uid://cykk6c2gajhks" path="res://scripts/title_screen.gdshader" id="1_175kj"]
 [ext_resource type="Texture2D" uid="uid://cc1j2r0aw8yo8" path="res://assets/nestle.png" id="1_hiyrx"]
 [ext_resource type="Texture2D" uid="uid://bfyq0bvm4d62p" path="res://assets/game_pallete.png" id="2_mv7k8"]
@@ -9,6 +10,7 @@
 [ext_resource type="Script" uid="uid://c4e7rgripcwb3" path="res://scripts/lv2_door_a.gd" id="4_ijqgd"]
 [ext_resource type="Script" uid="uid://dcpxoho3q4tts" path="res://scripts/lv2_door_b.gd" id="5_37aou"]
 [ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="9_175kj"]
+[ext_resource type="PackedScene" uid="uid://chudan7qc7ohm" path="res://scenes/diamond_in_game.tscn" id="10_mv7k8"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_vx6q7"]
 shader = ExtResource("1_175kj")
@@ -17389,6 +17391,7 @@ size = Vector2(38, 73.5)
 size = Vector2(20, 90)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_6b5o8")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -294.0
@@ -17450,6 +17453,9 @@ wall_min_slide_angle = 0.462512
 [node name="enemy3" parent="." instance=ExtResource("9_175kj")]
 position = Vector2(281, 69)
 wall_min_slide_angle = 0.462512
+
+[node name="game_diamond" parent="." instance=ExtResource("10_mv7k8")]
+position = Vector2(34, -76)
 
 [connection signal="area_entered" from="door_a/Area2D" to="door_a" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="door_b/Area2D" to="door_b" method="_on_area_2d_area_entered"]

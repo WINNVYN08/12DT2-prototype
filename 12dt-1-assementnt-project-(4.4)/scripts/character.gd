@@ -1,5 +1,4 @@
 extends CharacterBody2D
-@onready var sword_collision = $Sword_area/sword_collision
 @export var double_jump_speed = -150
 @export var speed = 100
 @export var dash_speed = 400
@@ -15,21 +14,17 @@ var friction = 0
 var slide_direction = 0
 var sliding = false
 @export_range(0.0 , 1.0) var slide_friction = 0.009
- 
 @export var wall_jump_pushback = 200
 @export var wall_jump_speed = -190
 @export var wall_fall_speed = 50
-
 var diamond = 0
 var health = 0
 var max_health = 100
-var can_attack_again = true
 var wall_jump = true 
 var variable_jump = true
 var dash_ready = false
 var double_jump_ready = false
 var start_position = Vector2.ZERO
-var is_attacking = false
 var jumping = false
 var can_die = true
 var coyote_frames = 60
@@ -38,9 +33,6 @@ var last_floor = false
 
 
 func _ready():
-	# whether or not the attackcollison i hidden
-	sword_collision.disabled = true
-
 	#setting the cayote time
 	$CoyoteTimer.wait_time = coyote_frames / 60.0
 	health = max_health
@@ -56,20 +48,18 @@ func _physics_process(delta):
 	# this code is for the slide
 	if  not Input.is_action_pressed("down")  :
 		sliding = false
-		if dir != 0:
-			friction = walk_friction
-			acceleration = walk_acceleration
+		if dir != 0: # if pressing either left or right 
+			friction = walk_friction  
+			acceleration = walk_acceleration 
 			velocity.x = lerp(velocity.x, dir * speed, acceleration)
 		
 		else:
-			velocity.x = lerp(velocity.x,0.0 , friction)
+			velocity.x = lerp(velocity.x,0.0 , friction) # slide movement
 	
 	#flipping the chacter sprite
 	if dir <0 :
 		_animated_sprite.flip_h = true
-		sword_collision.position.x = -7
 	elif dir >0 :
-		sword_collision.position.x = 5
 		_animated_sprite.flip_h = false
 		
 	if Input.is_action_just_pressed("down") and not is_on_floor():
@@ -84,10 +74,6 @@ func _physics_process(delta):
 		sliding = true
 		friction = walk_friction
 		
-	if sliding:
-		friction = slide_friction
-		velocity.x = lerp(velocity.x , 0.0, slide_friction)
-
 	if abs(velocity.x) < 0.5:
 		sliding = false
 		velocity.x = 0.0
@@ -118,7 +104,6 @@ func _physics_process(delta):
 	if Input.is_action_just_released("jump")and variable_jump == true:
 		velocity.y *= 0.4 
 		variable_jump = false 
-
 	elif Input.is_action_just_pressed("jump") and not is_on_floor() and double_jump_ready:
 		$"../sounds/DoubleJumpSound".play()	
 		velocity.y = double_jump_speed
@@ -147,9 +132,7 @@ func _physics_process(delta):
 		coyote = true
 		$CoyoteTimer.start()
 		
-	if Input.is_action_just_pressed("attack") and not is_attacking:
-		start_attack()
-		
+
 	if Input.is_action_just_pressed("return"):
 		get_tree().change_scene_to_file("res://scenes/act_1.tscn")
 			
@@ -160,13 +143,6 @@ func _physics_process(delta):
 	move_and_slide()
 	
 	
-func start_attack():
-	if can_attack_again or is_attacking:
-
-		is_attacking = true
-		sword_collision.disabled = false
-		can_attack_again = false
-		attack_timer()
 
 func player_health():
 	if can_die == true:
@@ -179,14 +155,6 @@ func player_health():
 			_death()
 		
 	
-func attack_timer() -> void:
-
-	await get_tree().create_timer(0.4).timeout
-	is_attacking = false
-	sword_collision.disabled = true	
-	await get_tree().create_timer(0.4).timeout
-	can_attack_again = true  # Re-enable attacking
-	_animated_sprite.play("attack")
 
 
 func _on_area_2d_body_entered(body: Node) -> void:

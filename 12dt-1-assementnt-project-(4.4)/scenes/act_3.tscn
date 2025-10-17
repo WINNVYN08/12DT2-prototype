@@ -1,11 +1,14 @@
-[gd_scene load_steps=14 format=4 uid="uid://bnuo6qk7kcbng"]
+[gd_scene load_steps=17 format=4 uid="uid://bnuo6qk7kcbng"]
 
 [ext_resource type="Texture2D" uid="uid://cc1j2r0aw8yo8" path="res://assets/nestle.png" id="1_5iqp5"]
+[ext_resource type="Script" uid="uid://dwj1odr67owxn" path="res://scenes/acts.gd" id="1_5r2iv"]
 [ext_resource type="Texture2D" uid="uid://d1y576wr21l0f" path="res://assets/oak_woods_tileset.png" id="2_5vsfe"]
 [ext_resource type="PackedScene" uid="uid://bd4nbyoylde07" path="res://scenes/character.tscn" id="3_vmtld"]
 [ext_resource type="Script" uid="uid://birfng6ukmq5g" path="res://scripts/lv3_door_a.gd" id="4_5r2iv"]
 [ext_resource type="Script" uid="uid://b671afbbe6i10" path="res://scripts/lv3_door_b.gd" id="5_5ga14"]
 [ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="6_5vsfe"]
+[ext_resource type="PackedScene" uid="uid://chudan7qc7ohm" path="res://scenes/diamond_in_game.tscn" id="7_vmtld"]
+[ext_resource type="PackedScene" uid="uid://cfpoesywrsrh8" path="res://scenes/transtion.tscn" id="9_5ga14"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_i1dcg"]
 texture = ExtResource("1_5iqp5")
@@ -17371,6 +17374,7 @@ size = Vector2(38, 117)
 size = Vector2(274, 28.5)
 
 [node name="Node2D" type="Node2D"]
+script = ExtResource("1_5r2iv")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -78.0
@@ -17412,6 +17416,12 @@ shape = SubResource("RectangleShape2D_5iqp5")
 
 [node name="enemy" parent="." instance=ExtResource("6_5vsfe")]
 position = Vector2(99, 87)
+
+[node name="game_diamond" parent="." instance=ExtResource("7_vmtld")]
+position = Vector2(-153, 62)
+
+[node name="transition" parent="." instance=ExtResource("9_5ga14")]
+visible = false
 
 [connection signal="area_entered" from="door_a/Area2D" to="door_a" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="door_b/Area2D" to="door_b" method="_on_area_2d_area_entered"]

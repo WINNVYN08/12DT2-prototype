@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=4 uid="uid://dpn1fhvsh2bg6"]
+[gd_scene load_steps=17 format=4 uid="uid://dpn1fhvsh2bg6"]
 
 [ext_resource type="Shader" uid="uid://cykk6c2gajhks" path="res://scripts/title_screen.gdshader" id="1_vjnmv"]
 [ext_resource type="Texture2D" uid="uid://bfyq0bvm4d62p" path="res://assets/game_pallete.png" id="2_vjnmv"]
@@ -7,6 +7,8 @@
 [ext_resource type="Texture2D" uid="uid://d1y576wr21l0f" path="res://assets/oak_woods_tileset.png" id="5_7xgum"]
 [ext_resource type="PackedScene" uid="uid://bd4nbyoylde07" path="res://scenes/character.tscn" id="6_m0i4q"]
 [ext_resource type="PackedScene" uid="uid://b0s6svqg7yb4u" path="res://scenes/enemy.tscn" id="7_mwnqo"]
+[ext_resource type="PackedScene" uid="uid://chudan7qc7ohm" path="res://scenes/diamond_in_game.tscn" id="8_g17gd"]
+[ext_resource type="Script" uid="uid://bmxc7d4aw1w6" path="res://scenes/lv8_door_a.gd" id="9_7xgum"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_5yges"]
 shader = ExtResource("1_vjnmv")
@@ -17380,6 +17382,9 @@ physics_layer_0/collision_mask = 7
 sources/0 = SubResource("TileSetAtlasSource_bgnfj")
 sources/1 = SubResource("TileSetAtlasSource_1h54y")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m0i4q"]
+size = Vector2(26, 105)
+
 [node name="Node2D" type="Node2D"]
 
 [node name="ColorRect" type="ColorRect" parent="."]
@@ -17422,3 +17427,25 @@ position = Vector2(229, 227)
 
 [node name="enemy4" parent="." instance=ExtResource("7_mwnqo")]
 position = Vector2(326, 243)
+
+[node name="game_diamond" parent="." instance=ExtResource("8_g17gd")]
+position = Vector2(-144, 80)
+
+[node name="door_a" type="Node" parent="."]
+script = ExtResource("9_7xgum")
+
+[node name="Area2D" type="Area2D" parent="door_a"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door_a/Area2D"]
+position = Vector2(471, 8.5)
+shape = SubResource("RectangleShape2D_m0i4q")
+
+[node name="door_b" type="Node" parent="."]
+
+[node name="Area2D" type="Area2D" parent="door_b"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="door_b/Area2D"]
+position = Vector2(471, 8.5)
+shape = SubResource("RectangleShape2D_m0i4q")
+
+[connection signal="area_entered" from="door_a/Area2D" to="door_a" method="_on_area_2d_area_entered"]

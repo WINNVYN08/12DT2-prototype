@@ -7,5 +7,9 @@ var diamond_current = 0
 
 
 func _process(delta: float) -> void:
-	diamond_con.updateDiamonds(diamond_current)
-	print(diamond_current) 
+	var diamond_con = get_node_or_null("/root/Node2D/Node2D/CharacterBody2D/Camera2D/CanvasLayer/diamond_Container")
+	if diamond_con:
+		diamond_con.updateDiamonds(diamond_current)
+		print(diamond_current)
+	else:
+		print("diamond_Container not found or was freed!")
