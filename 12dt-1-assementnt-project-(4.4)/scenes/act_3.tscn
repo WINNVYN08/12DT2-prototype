@@ -16699,9 +16699,6 @@ position = Vector2(99, 87)
 position = Vector2(-153, 62)
 
 [node name="transition" parent="." instance=ExtResource("9_5ga14")]
-visible = false
-
-[node name="transition2" parent="." instance=ExtResource("9_5ga14")]
 
 [connection signal="area_entered" from="door_a/Area2D" to="door_a" method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="door_b/Area2D" to="door_b" method="_on_area_2d_area_entered"]

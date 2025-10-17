@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=4 uid="uid://ccwb1jxq6nytb"]
 
-[ext_resource type="Script" uid="uid://7hkintrngji0" path="res://scripts/act_5.gd" id="1_5nmqw"]
+[ext_resource type="Script" uid="uid://dwj1odr67owxn" path="res://scripts/acts.gd" id="1_f5ios"]
 [ext_resource type="Texture2D" uid="uid://cc1j2r0aw8yo8" path="res://assets/nestle.png" id="1_jljwd"]
 [ext_resource type="PackedScene" uid="uid://bd4nbyoylde07" path="res://scenes/character.tscn" id="3_oq2kd"]
 [ext_resource type="Script" uid="uid://crmbqb6ii6jp0" path="res://scripts/lv5_door_b.gd" id="4_dejc8"]
@@ -16656,7 +16656,7 @@ size = Vector2(94, 69)
 size = Vector2(61.5, 64.75)
 
 [node name="Node2D" type="Node2D"]
-script = ExtResource("1_5nmqw")
+script = ExtResource("1_f5ios")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 offset_left = -60.0
